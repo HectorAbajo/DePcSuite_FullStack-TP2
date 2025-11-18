@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+80s+Fade&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&family=Orbitron:wght@400..900&family=Pangolin&family=Special+Gothic+Expanded+One&display=swap');
+
+
+/* Reset y Variables Globales */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+:root {
+    --color-fondo: #e4e6e9;
+    --color-card-fondo: rgba(255, 255, 255, 0.349);
+    --color-sombra: 0 5px 10px rgba(7, 4, 2, 0.5);
+    --color-principal: #007bffd0; 
+    --color-agregar: #28a745; 
+    --color-quitar: #dc3545; 
+    --color-stock: #d0e0d1; 
+    --color-spinner: #4c7ab6;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--color-fondo);
+    min-height: 100vh;
+    width: 100%;
+    padding: 10px;
+    gap: 10px; 
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    font-family: "Jersey 25", sans-serif;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+
+/* Botones */
+
+.ocultar {
+    display: none 
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform:scale(1.02);
+}
+
+.buttonPrimari {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 15px;
+    padding: 8px 12px;
+    color: rgba(255, 255, 255, 0.753);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.buttonSecundari {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 50px;
+    width: 60px;
+    height: 40px;
+    padding: 0;
+    box-shadow: 0 5px 10px rgba(7, 4, 2, 0.5);
+    color: white;
+}
+
+.btn-product-Add, .btn-total_aceptar {
+    background-color: var(--color-principal);
+}
+
+.btn-product-Remove, .btn-item-Remove, .btn-total_vaciar {
+    background-color: var(--color-quitar);
+}
+
+.btn-product-increase, .btn-item-increase {
+    background-color: var(--color-agregar);
+}
+
+.btn-product-decrease, .btn-item-decrease {
+    background-color: var(--color-quitar);
+}
+
+
+/* Spinner */
+
+.spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid var(--color-spinner);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} 
+
+
+
+/* Seccion Productos */
+
+.sectionProducts {
+    width: 70%; 
+    display: flex;
+    flex-direction: column; 
+}
+
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px; 
+    padding: 5px 0;
+}
+
+.cardProducts {
+    flex: 1 1 380px;
+    max-width: 380px;
+    min-height: 200px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    border-radius: 10px;
+    background-color: var(--color-card-fondo);
+    box-shadow: var(--color-sombra);
+    padding: 10px;
+    margin: 5px; 
+}
+
+.cardProducts-container__descirption {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 8px;
+    gap: 2px;
+}
+
+.cardProducts h2 {
+    font-family: "Pangolin", cursive;
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.cardProducts-container__text-precio,
+.cardProducts-container__text-stock {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.cardProducts-container__number-precio {
+    font-family: "Jersey 25", sans-serif;
+    font-weight: 100;
+    font-size: 26px;
+    background-color: var(--color-stock);
+    color: rgb(48, 47, 47);
+    padding: 2px 5px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.cardProducts-container__text-stock {
+    align-self: flex-end;
+}
+
+.cardProducts-container__numbre-stock {
+    padding-right: 8px;
+    align-self: flex-end;
+    font-family: "Orbitron", sans-serif;
+}
+
+.cardProducts-container__container-buttons {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; 
+    margin-top: 10px;
+}
+
+.cardProducts-container__container-buttons .btn-product-Add,
+.cardProducts-container__container-buttons .btn-product-Remove {
+    flex-grow: 1; 
+    padding: 10px;
+}
+
+
+/* Seccion Carrito */
+
+.sectionCart {
+    width: 30%; 
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px; 
+}
+
+.cardItem {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-left: 5px solid var(--color-principal);
+}
+
+.cardItem__h2 {
+    font-family: "Pangolin", cursive;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.cardItem__text-precio,
+.cardItem__text-cantidad {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.cardItem__number-precio {
+    font-family: "Jersey 25", sans-serif;
+    font-size: 18px;
+    color: var(--color-principal);
+    display: inline-block;
+}
+
+.cardItem__number-cantidad {
+    font-family: "Orbitron", sans-serif;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.cardItem .container-buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.cardItem .container-buttons .buttonSecundari {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.cardItem .container-buttons .btn-item-Remove {
+    flex-grow: 1;
+    padding: 6px;
+    font-size: 12px;
+}
+
+.item_total {
+    font-family: "Orbitron", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-quitar); 
+    margin-left: auto; 
+}
+
+/* Contenedor Total del Carrito */
+
+.cart-container__total-container {
+    padding: 15px 10px;
+    margin-top: 15px;
+    border-top: 2px dashed rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end; 
+}
+
+.cart-container__total-container p {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.cart-container__total-container span {
+    font-family: "Jersey 25", sans-serif;
+    font-size: 36px;
+    color: var(--color-quitar);
+}
+
+.cart-container__total-container .buttonPrimari {
+    width: 100%;
+    max-width: 250px;
+    margin-top: 5px;
+    padding: 10px;
+}
