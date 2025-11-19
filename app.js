@@ -148,7 +148,7 @@ const renderTotal = ()=> {
     const btn_Confirmar = document.getElementsByClassName('btn-total_aceptar')
     for (const btnConfirmar of btn_Confirmar){
         btnConfirmar.addEventListener('click', (e)=> {
-            alert(`${totalCart}`)
+            alert(`Total Carrito $${totalCart}`)
         })
     }
 }
