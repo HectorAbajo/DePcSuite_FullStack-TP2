@@ -299,6 +299,7 @@ button:hover {
     margin-left: auto; 
 }
 
+
 /* Contenedor Total del Carrito */
 
 .cart-container__total-container {
@@ -329,4 +330,99 @@ button:hover {
     max-width: 250px;
     margin-top: 5px;
     padding: 10px;
+}
+
+
+
+/* Modal*/
+
+.modal-container {
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #f8f8f8; 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    width: 90%;
+}
+
+.modal-container::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-container__carItemModal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 5px solid var(--color-principal);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.carItemModal__h3 {
+    font-family: "Pangolin", cursive;
+    font-size: 18px;
+    flex-basis: 100%; 
+    margin-bottom: 5px;
+}
+
+.cardItemModal__text-precio,
+.carItemModal__text-cantidad {
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-size: 12px;
+    margin-right: 5px;
+    color: #555;
+}
+
+.carItemModal__number-precio,
+.carItemModal__number-cantidad {
+    font-family: "Jersey 25", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.carItemModal__number-precio {
+    color: var(--color-principal);
+}
+
+.modal-container__carItemModal p,
+.modal-container__carItemModal h3 {
+    margin-bottom: 0;
+}
+
+.modal-container__div-content {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid var(--color-principal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.modal-container__div-content span {
+    font-family: "Jersey 25", sans-serif;
+    font-size: 40px;
+    color: var(--color-quitar);
+    font-weight: bold;
+}
+
+.modal-container__div-content .buttonPrimari {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    font-size: 18px;
+}
+
+.btn-buy-totalCart {
+    background-color: var(--color-agregar);
+}
+
+.btn-returnToCart {
+    background-color: #6c757d; 
 }

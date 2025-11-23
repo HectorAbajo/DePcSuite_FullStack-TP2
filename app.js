@@ -6,6 +6,7 @@ let totalCart = null
 let productos = null
 let cargandoServidor = false
 let errorServidor = null
+let modalShow = false
 
 /* Captura de elementos del DOM */
 const containerProducts = document.getElementById('div__sectionProducts')
@@ -14,6 +15,7 @@ const containerPriceTotalCart = document.getElementById('totalCart')
 const containerErrorServidor = document.getElementById('errorServidor')
 const containerSpinnerProducts = document.getElementById('spinnerProducts')
 const containerSpinnerCart = document.getElementById('spinnerCart')
+const containerModal = document.getElementById('modal')
 
 /* Fetch */
 const fechDatos = async(url)=> {
@@ -120,6 +122,7 @@ const renderCarrito = ()=> {
         else if(errorServidor){
             renderError()
         }
+        
 }
 
 const renderTotal = ()=> {
@@ -148,7 +151,7 @@ const renderTotal = ()=> {
     const btn_Confirmar = document.getElementsByClassName('btn-total_aceptar')
     for (const btnConfirmar of btn_Confirmar){
         btnConfirmar.addEventListener('click', (e)=> {
-            alert(`Total Carrito $${totalCart}`)
+            setModalShow(true)
         })
     }
 }
@@ -171,6 +174,56 @@ const renderError = ()=> {
 
     let html = `<span> Error del Servidor al Obtener Productos ${errorServidor} </span>`
     return containerErrorServidor.innerHTML = html
+}
+
+const renderModal = ()=> {
+    
+    let modal =''
+    let itemTotalCart = ''
+
+    if(modalShow){
+
+            for (const item of carrito){
+                
+                itemTotalCart = itemTotalCart +
+                `
+                <div class='modal-container__carItemModal'>
+                <h3 class="carItemModal__h3">${item.title}</h3>
+                <p class="cardItemModal__text-precio">Precio</p>
+                <p class="carItemModal__number-precio">$${item.precio}</p>
+                <p class="carItemModal__text-cantidad">Cantidad</p>
+                <p class="carItemModal__number-cantidad">${item.cantidad}</p>
+                </div>
+                `
+            }
+
+         modal =  `
+            <div class='modal-container__div-content'>
+                <p>El Total A Pagar Es: <span>$${totalCart}</span> </p>
+                <button class='btn-buy-totalCart buttonPrimari'>Comprar Carrito</button>
+                <button class='btn-returnToCart buttonPrimari'>Revisar Compra</button>
+            </div>
+        `
+
+    containerModal.innerHTML = itemTotalCart + modal 
+    
+    const btn_Buy = document.getElementsByClassName('btn-buy-totalCart')
+    for(const btnBuy of btn_Buy){
+        btnBuy.addEventListener('click', (e)=> {
+            actualizacionCantidadCarritoProductos.comprar()
+        })
+    }
+
+    const btn_Return = document.getElementsByClassName('btn-returnToCart')
+    for(const btnReturn of btn_Return){
+        btnReturn.addEventListener('click', (e)=> {
+            setModalShow(false)
+        })
+    }
+
+    containerModal.showModal()
+    }
+    
 }
 
 
@@ -216,6 +269,11 @@ const setTotalCart = ()=> {
     totalCart = acumulado.toFixed(2)
     renderTotal()
     
+}
+
+const setModalShow = (estado)=> {
+    modalShow = estado
+    modalShow ?  renderModal() : containerModal.close() 
 }
 
 
@@ -392,13 +450,22 @@ const carritoTrsbajo = [...carrito]
     }
 }
 
+const comparCarrito = ()=> {
+    carrito = []
+    setModalShow(false)
+    renderCarrito()
+    renderTotal()
+    renderProductos()
+}
+
 const actualizacionCantidadCarritoProductos = 
     {
         incrementar: incrementarEnCarrito,
         decrementar: decrementarEnCarrito,
         agregar: agregarAlCarrito,
         eliminar: quitarDelCarrito,
-        vaciar: vaciarCarrito    
+        vaciar: vaciarCarrito, 
+        comprar: comparCarrito   
     }
 
 fechDatos(url)
